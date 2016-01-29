@@ -60,11 +60,9 @@ public class Selector extends JFrame {
         getFiles(files);
     }
     void getFiles(File[] files) {
-        System.out.println("--- Files ---");
         for (File file : files) {
             if (!file.getName().contains(".DS_Store")) {
                 model.addElement(file.getName());
-                System.out.println(file.getName());
             }
         }
     }

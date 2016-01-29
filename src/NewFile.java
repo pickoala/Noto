@@ -34,8 +34,8 @@ public class NewFile extends JFrame {
             try {
                 FileOutputStream fos = new FileOutputStream("SavedNotes/" + name);
                 fos.write("Hello".getBytes());
-            } catch (IOException ex) {
-                System.out.println(ex);
+            } catch (IOException e) {
+                System.out.println(e);
             }
         }
         dispose();
