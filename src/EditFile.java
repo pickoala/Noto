@@ -11,10 +11,13 @@ public class EditFile extends JFrame {
     Container cp = getContentPane();
     JTextArea textArea = new JTextArea();
     JScrollPane scrollText = new JScrollPane(textArea);
+
     int pd = 8;
     int current = 0;
     int finalW = 500;
+
     String workName;
+
     public EditFile(String fileName) {
         super(fileName);
         addTextArea();
@@ -23,6 +26,8 @@ public class EditFile extends JFrame {
         createWindow();
     }
     void addTextArea() {
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
         scrollText.setBounds(pd, pd, finalW - 2 * pd, 500);
         scrollText.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         a(scrollText);

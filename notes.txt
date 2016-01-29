@@ -1,30 +1,5 @@
 ## Bugs
 -------
 
- - Creates .txt files (no actual name)  %% solved
 
- Try::
-     try {
-       File file = new File(dateiname);
-       FileInputStream fin = new FileInputStream(file);
-       ausgabetext = "";
-       int anzahlbytes = (int)file.length();
-       byte[] source = new byte[anzahlbytes];
-       fin.read(source);
-       fin.close();
-       int i=0;
 
-       while(i<anzahlbytes) {
-         ausgabetext += (char)source[i];
-         i++;
-       }
-       //ausgabetext = String.valueOf(source);
-     } catch (FileNotFoundException e) {
-       //System.out.println("File not found" + e);
-       ausgabetext= "File not found" + e;
-     } catch (IOException ioe) {
-       //System.out.println("Exception while reading the file " + ioe);
-       ausgabetext = "Exception while reading the file " + ioe;
-     } finally {
-       return ausgabetext;
-     }

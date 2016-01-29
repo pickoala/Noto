@@ -9,21 +9,25 @@ import java.io.IOException;
 public class NewFile extends JFrame {
     Container cp = getContentPane();
     JTextField text = new JTextField();
-    //
+
     int pd = 16;
     int current = pd;
     int finalW = 200;
+
     public NewFile() {
         super("Neu...");
+
         text.setBounds(pd, pd, finalW - 2 * pd, 24);
         cp.add(text);
         current += text.getHeight() + pd;
+
         JButton button = new JButton();
         button.setBounds(pd, current, finalW - 2 * pd, 24);
         button.setText("Add");
         button.addActionListener( a -> createNote() );
         cp.add(button);
         current += text.getHeight() + pd;
+
         createWindow();
     }
     void createNote() {
