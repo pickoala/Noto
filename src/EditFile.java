@@ -89,6 +89,7 @@ public class EditFile extends JFrame {
         setLocation( (d.width - getWidth()) / 2, (d.height - getHeight()) / 2);
         setResizable(false);
         cp.setLayout(null);
-        setVisible(true);
+        if (workName == "0") return;
+        else setVisible(true);
     }
 }
