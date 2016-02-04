@@ -81,7 +81,9 @@ public class EditFile extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                saveText();
+                //saveText();
+                Selector.getWindows()[0].dispose();
+                dispose();
             }
         });
         setSize(finalW, current + 22);

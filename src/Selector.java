@@ -22,6 +22,7 @@ public class Selector extends JFrame {
     JTextField searchBox = new JTextField();
     ArrayList<String> el = new ArrayList<>();
     EditFile ef = new EditFile("0");
+    WindowManager manager = new WindowManager();
 
     JFrame newFile = new JFrame();
     JFrame renameFile = new JFrame();
@@ -50,7 +51,7 @@ public class Selector extends JFrame {
                 closingWindow();
             }
         });
-        createWindow(this, cp, finalW, current);
+        manager.createWindow(this, cp, finalW, current);
     }
 
     void addMainList() {
@@ -121,58 +122,8 @@ public class Selector extends JFrame {
         ef.setVisible(true);
     }
     void renameNote() {
-        String name = model.getElementAt(list.getSelectedIndex()).toString();
-        int cx = pd;
-        int cy = pd;
-        String sName = name;
-
-        renameFile = new JFrame();
-        renameFile.setTitle("Rename");
-        Container con = renameFile.getContentPane();
-
-        JTextField oldName = new JTextField();
-        oldName.setBounds(cx, cy, 200, 24);
-        oldName.setText(sName);
-        oldName.setEditable(false);
-        con.add(oldName);
-        cx += oldName.getWidth() + pd;
-
-        JLabel arrow = new JLabel();
-        arrow.setBounds(cx, cy, 24, 24);
-        arrow.setText("→");
-        con.add(arrow);
-        cx += arrow.getWidth() + pd;
-
-        JTextField newName = new JTextField();
-        newName.setBounds(cx, cy, 200, 24);
-        con.add(newName);
-        cx += newName.getWidth();
-        cy += 24 + pd;
-
-        JButton bAppend = new JButton();
-        bAppend.setBounds(cx - 150, cy, 150, 24);
-        bAppend.setText("Append");
-        bAppend.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Path oName = Paths.get("SavedNotes/" + sName);
-                Path nName = Paths.get(newName.getText());
-                try {
-                    Files.move(oName, oName.resolveSibling(nName));
-
-                } catch (IOException exc) {
-                    exc.printStackTrace();
-                }
-                renameFile.dispose();
-
-                loadNotes();
-                list.setSelectedIndex(0);
-            }
-        });
-        con.add(bAppend);
-        cx += pd;
-        cy += 24 + 24 + pd;
-        createWindow(renameFile, con, cx, cy);
+        String sName = model.getElementAt(list.getSelectedIndex()).toString();
+        new RenameFile(sName);
     }
     void deleteNote() {}
     void search() {
@@ -202,14 +153,6 @@ public class Selector extends JFrame {
                 el.add(file.getName());
             }
         }
-    }
-    void createWindow(JFrame f, Container c, int x, int y) {
-        f.setSize(x, y + 22);
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        f.setLocation( (d.width - f.getWidth()) / 2, (d.height - f.getHeight()) / 2);
-        f.setResizable(false);
-        c.setLayout(null);
-        f.setVisible(true);
     }
     void closingWindow() {
         if (renameFile.isVisible()) renameFile.dispose();
